@@ -70,6 +70,7 @@ this.setContentTypeHeader("multipart/form-data");
         params,
         data,
       };
+      console.log(config)
       const response = await axiosInstance(config);
       return handleResponse(response,fun);
     } catch (error) {
@@ -105,6 +106,10 @@ this.setContentTypeHeader("multipart/form-data");
   async delete(url, params = {},fun=function (){}) {
     return this.request('delete', url, null, params,fun);
   },
+  download(url) {
+    let path = API_URL + url;
+    window.open(path);
+  }
 };
 
 export default api

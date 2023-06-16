@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 <!--    <router-view/>-->
-    <upload style="width: 200px;height: 100px"></upload>
+    <upload style="width: auto;height: auto"></upload>
   </div>
 </template>
 
