@@ -1,6 +1,6 @@
 # fileswitch
 
-> A Vue.js project
+> 大文件分片上传,基于Vue2
 
 ## Build Setup
 
