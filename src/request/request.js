@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Notification} from 'element-ui'
-const API_URL = '/api';
+const API_URL = 'http://192.168.31.84:8899/api';
 const config={
   baseURL: API_URL,
   headers: {'Content-Type': 'application/json;charset=UTF-8'},

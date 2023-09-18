@@ -52,7 +52,18 @@
             <el-button type="danger"  icon="el-icon-delete" @click="del(scope.row)" circle></el-button>
           </template>
         </el-table-column>
+        <el-table-column
+          fixed="right"
+          label="复制"
+          width="70px"
+          min-width="70px"
+          max-width="70px">
+          <template slot-scope="scope">
+            <el-button type="danger"  icon="el-icon-s-order" @click="copyToClipboard(scope.row)" circle></el-button>
+          </template>
+        </el-table-column>
       </el-table>
+
     </div>
     </div>
 </template>
@@ -222,6 +233,30 @@ export default {
         });
         }
       );
+    },
+    copyToClipboard(row) {
+      var currentDomain = window.location.origin;
+      if (this.$api.api.startsWith("http")) {
+        currentDomain = this.$api.api;
+      } else {
+        currentDomain = currentDomain + this.$api.api;
+      }
+      // 要打开的相对链接
+      var relativeLink = "/files/download?filename=" + row.filename;
+      // 要复制的预设数据
+      const dataToCopy = currentDomain + relativeLink;
+      if (window.clipboardData) {
+        window.clipboardData.setData('text', dataToCopy);
+      }else{
+        (function () {
+          document.oncopy = function (e) {
+            e.clipboardData.setData('text', dataToCopy);
+            e.preventDefault();
+            document.oncopy = null;
+          }
+        })('要复制的内容');
+        document.execCommand('Copy');
+      }
     }
   }
 }
