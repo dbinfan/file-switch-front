@@ -188,7 +188,18 @@ export default {
       });
     },
     download(row){
-      this.$api.file().download("/files/download?filename="+row.filename);
+      var currentDomain = window.location.origin;
+      if (this.$api.api.startsWith("http")){
+        currentDomain = this.$api.api;
+      }else{
+        currentDomain = currentDomain+this.$api.api;
+      }
+      // 要打开的相对链接
+      var relativeLink = "/files/download?filename="+row.filename;; // 请替换成你的相对链接
+
+      // 构建完整的链接
+      var newURL = currentDomain + relativeLink;
+      window.open(newURL, '_blank');
     },
     del(row){
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {

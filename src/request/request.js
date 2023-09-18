@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Notification} from 'element-ui'
-const API_URL = 'http://127.0.0.1:8899/api';
+const API_URL = '/api';
 const config={
   baseURL: API_URL,
   headers: {'Content-Type': 'application/json;charset=UTF-8'},
@@ -44,6 +44,7 @@ const handleError = (error) => {
 };
 
 const api = {
+  api:API_URL,
   setAuthorizationHeader(token) {
     axiosInstance.defaults.headers.Authorization = `Bearer ${token}`;
   },
@@ -59,7 +60,7 @@ const api = {
     return this;
   },
   file(){
-this.setContentTypeHeader("multipart/form-data");
+    this.setContentTypeHeader("multipart/form-data");
     return this;
   },
   async request(method, url, data = {}, params = {},fun) {
